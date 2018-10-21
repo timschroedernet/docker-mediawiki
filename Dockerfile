@@ -107,10 +107,6 @@ WORKDIR /var/www/mediawiki
 # Copy docker entry point script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-# Copy install and update script
-RUN mkdir /script
-COPY script/* /script/
-
 # General setup
 VOLUME ["/var/cache/nginx", "/data", "/images"]
 EXPOSE 8080
