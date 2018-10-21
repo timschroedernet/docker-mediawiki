@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y imagemagick libmagickwand-6.q16-dev --n
 # Intl PHP extension
 RUN apt-get update && apt-get install -y libicu-dev g++ --no-install-recommends && \
     docker-php-ext-install intl && \
-    apt-get install -y --auto-remove libicu52 g++ && \
+    apt-get install -y --auto-remove libicu57 g++ && \
     rm -rf /var/lib/apt/lists/*
 
 # APC PHP extension
@@ -58,7 +58,9 @@ COPY config/supervisor/supervisord.conf /etc/supervisor/conf.d/
 COPY config/supervisor/kill_supervisor.py /usr/bin/
 
 # NodeJS
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
+RUN apt-get update && \
+    apt-get install -y gnupg2 && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs --no-install-recommends
 
 # Parsoid
@@ -72,8 +74,8 @@ ENV NODE_PATH /usr/lib/parsoid/node_modules:/usr/lib/parsoid/src
 
 # MediaWiki
 ARG MEDIAWIKI_VERSION_MAJOR=1
-ARG MEDIAWIKI_VERSION_MINOR=30
-ARG MEDIAWIKI_VERSION_BUGFIX=0
+ARG MEDIAWIKI_VERSION_MINOR=31
+ARG MEDIAWIKI_VERSION_BUGFIX=1
 
 RUN curl -s -o /tmp/keys.txt https://www.mediawiki.org/keys/keys.txt && \
     curl -s -o /tmp/mediawiki.tar.gz https://releases.wikimedia.org/mediawiki/$MEDIAWIKI_VERSION_MAJOR.$MEDIAWIKI_VERSION_MINOR/mediawiki-$MEDIAWIKI_VERSION_MAJOR.$MEDIAWIKI_VERSION_MINOR.$MEDIAWIKI_VERSION_BUGFIX.tar.gz && \
@@ -88,7 +90,6 @@ RUN curl -s -o /tmp/keys.txt https://www.mediawiki.org/keys/keys.txt && \
     rm -rf /var/www/mediawiki/images && \
     ln -s /images /var/www/mediawiki/images && \
     chown -R www-data:www-data /data /images /var/www/mediawiki/images
-COPY config/mediawiki/* /var/www/mediawiki/
 
 # VisualEditor extension
 RUN curl -s -o /tmp/extension-visualeditor.tar.gz https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL${MEDIAWIKI_VERSION_MAJOR}_${MEDIAWIKI_VERSION_MINOR}-`curl -s https://extdist.wmflabs.org/dist/extensions/ | grep -o -P "(?<=VisualEditor-REL${MEDIAWIKI_VERSION_MAJOR}_${MEDIAWIKI_VERSION_MINOR}-)[0-9a-z]{7}(?=.tar.gz)" | head -1`.tar.gz && \

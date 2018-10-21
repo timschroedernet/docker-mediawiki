@@ -1,6 +1,6 @@
 worker_heartbeat_timeout: 300000
 
-num_workers: $PARSOID_WORKERS
+num_workers: 1
 
 logging:
     level: info
