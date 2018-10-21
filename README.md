@@ -26,6 +26,15 @@ A typical docker-compose file will look like the following:
         container_name: mediawiki
         depends_on:
           - mediawiki-db
+        networks:
+          - internal
+          - proxy
+        labels:
+          - traefik.enable=true
+          - traefik.backend=mediawiki
+          - traefik.docker.network=proxy
+          - traefik.port=8080
+          - traefik.frontend.rule=Host:my.domain.com
         volumes:
           - /opt/mediawiki/LocalSettings.php:/var/www/mediawiki/LocalSettings.php
           - /opt/mediawiki/images:/var/www/mediawiki/images
