@@ -1,5 +1,5 @@
 FROM php:7.0-fpm
-MAINTAINER Kristoph Junge <kristoph.junge@gmail.com>
+MAINTAINER Tim Schröder <code@timschroeder.net>
 
 # Change UID and GID of www-data user to match host privileges
 RUN usermod -u 999 www-data && \
