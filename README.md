@@ -6,13 +6,13 @@ Docker image for [MediaWiki 1.31.1](https://www.mediawiki.org) with [VisualEdito
 
 - [MediaWiki](https://www.mediawiki.org) 1.31.1
 - [Nginx](https://www.nginx.com)
-- [PHP-FPM](https://php-fpm.org/) with [PHP7](https://www.mediawiki.org/wiki/Compatibility/de#PHP)
+- [PHP-FPM](https://php-fpm.org/)
 - [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor) plugin
 - [UserMerge](https://www.mediawiki.org/wiki/Extension:UserMerge) plugin
-- [Parsoid](https://www.mediawiki.org/wiki/Parsoid) running on NodeJS v4.6.x LTS
+- [Parsoid](https://www.mediawiki.org/wiki/Parsoid) running on NodeJS
 - Imagick for thumbnail generation
 - Intl for Unicode normalization
-- APC as in memory PHP object cache
+- APC as in-memory PHP object cache
 - Configured with [Short URLs](https://www.mediawiki.org/wiki/Manual:Short_URL)
 
 ## Usage
