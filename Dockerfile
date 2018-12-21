@@ -1,4 +1,4 @@
-FROM php:7.0-fpm
+FROM php:7.3-fpm
 MAINTAINER Tim Schröder <code@timschroeder.net>
 
 # Change UID and GID of www-data user to match host privileges
@@ -22,7 +22,7 @@ RUN curl -s -o /tmp/go-pear.phar http://pear.php.net/go-pear.phar && \
 # Imagick with PHP extension
 RUN apt-get update && apt-get install -y imagemagick libmagickwand-6.q16-dev --no-install-recommends && \
     ln -s /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16/MagickWand-config /usr/bin/ && \
-    pecl install imagick-3.4.0RC6 && \
+    pecl install imagick-3.4.3 && \
     echo "extension=imagick.so" > /usr/local/etc/php/conf.d/ext-imagick.ini && \
     rm -rf /var/lib/apt/lists/*
 
@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y libicu-dev g++ --no-install-recommends 
 
 # APC PHP extension
 RUN pecl install apcu && \
-    pecl install apcu_bc-1.0.3 && \
+    pecl install apcu_bc-1.0.4 && \
     docker-php-ext-enable apcu --ini-name 10-docker-php-ext-apcu.ini && \
     docker-php-ext-enable apc --ini-name 20-docker-php-ext-apc.ini
 
@@ -60,7 +60,7 @@ COPY config/supervisor/kill_supervisor.py /usr/bin/
 # NodeJS
 RUN apt-get update && \
     apt-get install -y gnupg2 && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
     apt-get install -y nodejs --no-install-recommends
 
 # Parsoid
