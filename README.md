@@ -19,7 +19,7 @@ Docker image for [MediaWiki 1.32.0](https://www.mediawiki.org) with [VisualEdito
 
 The image is to be used behind a proxy service like [Traefik](https://traefik.io/). It does not contain a `LocalSettings.php` configuration file and expects that this file is mounted as a separate volume. Consequently, it does not provide any environment variables for customization. A sample `LocalSettings.php` file is included.
 
-A typical docker-compose file will look like the following: 
+A typical docker-compose file, in this case using [traefik](), will look like the following: 
 
     mediawiki:
         image: timschroeder/mediawiki
@@ -39,6 +39,26 @@ A typical docker-compose file will look like the following:
           - /opt/mediawiki/LocalSettings.php:/var/www/mediawiki/LocalSettings.php
           - /opt/mediawiki/images:/var/www/mediawiki/images
         restart: always
+        
+    mediawiki-db:
+        image: mysql
+        container_name: mediawiki-db
+        command: ["--default-authentication-plugin=mysql_native_password"]
+        restart: unless-stopped
+        ports:
+          - "3308:3306"
+        volumes:
+          - /opt/mediawiki-db:/var/lib/mysql
+        networks:
+          - internal
+        labels:
+          - traefik.enable=false
+     
+    networks:
+        proxy:
+            external: true
+        internal:
+            external: false
 
 Give permissions 999:999 to the volumes you mount inside the container. 
 
