@@ -62,10 +62,6 @@ A typical docker-compose file, in this case using Traefik, will look like the fo
 
 Give permissions 999:999 to the volumes you mount inside the container. 
 
-## Source
-
-Source code is available on [GitHub](https://github.com/timschroedernet/docker-mediawiki). 
-
 ## License
 
 The image is licensed under the MIT license. Please see the separate [license file](LICENSE) for details.
