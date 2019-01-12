@@ -19,7 +19,7 @@ Docker image for [MediaWiki 1.32.0](https://www.mediawiki.org) with [VisualEdito
 
 The image is to be used behind a proxy service like [Traefik](https://traefik.io/). It does not contain a `LocalSettings.php` configuration file and expects that this file is mounted as a separate volume. Consequently, it does not provide any environment variables for customization. A sample `LocalSettings.php` file is included.
 
-A typical docker-compose file, in this case using [traefik](), will look like the following: 
+A typical docker-compose file, in this case using Traefik, will look like the following: 
 
     mediawiki:
         image: timschroeder/mediawiki
