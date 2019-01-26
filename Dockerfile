@@ -13,12 +13,6 @@ RUN apt-get update && \
 # MySQL PHP extension
 RUN docker-php-ext-install mysqli
 
-# Pear mail
-RUN curl -s -o /tmp/go-pear.phar http://pear.php.net/go-pear.phar && \
-    echo '/usr/bin/php /tmp/go-pear.phar "$@"' > /usr/bin/pear && \
-    chmod +x /usr/bin/pear && \
-    pear install mail Net_SMTP
-
 # Imagick with PHP extension
 RUN apt-get update && apt-get install -y imagemagick libmagickwand-6.q16-dev --no-install-recommends && \
     ln -s /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16/MagickWand-config /usr/bin/ && \
