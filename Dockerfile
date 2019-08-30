@@ -52,7 +52,7 @@ COPY config/supervisor/kill_supervisor.py /usr/bin/
 # NodeJS
 RUN apt-get update && \
     apt-get install -y gnupg2 && \
-    curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install -y nodejs --no-install-recommends
 
 # Parsoid
