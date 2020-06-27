@@ -1,10 +1,10 @@
 # Docker MediaWiki with VisualEditor
 
-Docker image for [MediaWiki 1.34.1](https://www.mediawiki.org) with [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor) plugin. The image is based on the [kristophjunge/mediawiki](https://hub.docker.com/r/kristophjunge/mediawiki/) image but has been simplified, and slightly updated, so that it runs the latest MediaWiki release. 
+Docker image for [MediaWiki 1.34.2](https://www.mediawiki.org) with [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor) plugin. The image is based on the [kristophjunge/mediawiki](https://hub.docker.com/r/kristophjunge/mediawiki/) image but has been simplified, and slightly updated, so that it runs the latest MediaWiki release. 
 
 ## Features
 
-- [MediaWiki](https://www.mediawiki.org) 1.34.1
+- [MediaWiki](https://www.mediawiki.org) 1.34.2
 - [Nginx](https://www.nginx.com)
 - [PHP-FPM](https://php-fpm.org/)
 - [VisualEditor](https://www.mediawiki.org/wiki/VisualEditor) plugin
